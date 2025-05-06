@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct node {
+	int data;
+	struct node* next;
+} NODE_STRUCT;
+
+typedef NODE_STRUCT* NODE;
+
+NODE createNode(int data) {
+	NODE newNode = (NODE)malloc(sizeof(NODE_STRUCT));
+	newNode->data = data;
+	newNode->next = newNode;
+	return newNode;
+}
+
+NODE insertAtPositionInCLL(NODE first, int pos, int x) {
+	NODE newNode = createNode(x);
+	if (first == NULL) {
+		if (pos != 1) {
+			
+printf("Position not found\n");
+			free(newNode);
+			return first;
+		}
+		return newNode;
+	}
+
+	if (pos == 1) {
+	NODE temp = first;
+	while (temp->next != first) {
+		temp = temp->next;
+	}
+	temp->next = newNode;
+	newNode->next = first;
