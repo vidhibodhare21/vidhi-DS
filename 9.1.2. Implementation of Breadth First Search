@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 99
+
+
+// Write your code here...
+#include <stdbool.h>
+
+struct node {
+int vertex;
+struct node* next;
+};
+
+typedef struct node* GNODE;
+
+GNODE graph[MAX];
+
+int visited[MAX];
+
+int queue[MAX];
+int front = -1, rear = -1;
+
+bool isEmpty() {
+	return front == -1;
+}
+void enqueue(int vertex) {
+	if(rear == MAX -1) {
+		printf("Queue is full\n");
+	} else {
+		if(front == -1) {
+			front = 0;
+		}
+		queue[++rear] = vertex;
+	}
+}
+int dequeue() {
+}
