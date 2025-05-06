@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+// write your code here 
+
+typedef struct node {
+	int data;
+	struct node* next;
+} *NODE;
+
+NODE head1 = NULL, head2 = NULL;
+
+NODE insertEnd(NODE head, int data) {
+	NODE newNode = (NODE)malloc(sizeof(struct node));
+	newNode->data = data;
+	if (head == NULL) {
+		newNode->next = newNode;
+		return newNode;
+	}
+
+	NODE temp = head;
+	while (temp->next != head)		temp = temp->next;
+	temp->next = newNode;
+	newNode->next = head;
+	return head;
+}
+
+void displayList(NODE head) {
+	if (head == NULL) {
+		printf("Circular Linked List is empty\n");
+		return;
+	}
+	NODE temp = head;
+	do {
+		printf("%d ", temp->data);
+		temp = temp->next;
+	} while (temp != head);
